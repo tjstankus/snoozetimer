@@ -45,7 +45,8 @@ func main() {
 		fmt.Println("Stop")
 		ticker.Stop()
 	} else {
-		fmt.Println("Snooze")
+		fmt.Println("Snoozing for 3 seconds")
+		time.Sleep(3 * time.Second)
 	}
 
 	done <- true
