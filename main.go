@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"time"
+
+	"github.com/andybrewer/mack"
 )
 
 func main() {
@@ -29,6 +31,24 @@ func main() {
 	// channel. We'll stop ours after 1600ms.
 	time.Sleep(5 * time.Second)
 	ticker.Stop()
+
+	dialog := mack.DialogOptions{
+		Text:    "Time's up",    // Required
+		Buttons: "Stop, Snooze", // Optional - Comma separated list, max of 3
+	}
+	response, err := mack.DialogBox(dialog)
+
+	if err != nil {
+		panic(err)
+	}
+
+	if response.Clicked == "Stop" {
+		// handle the Cancel event
+		fmt.Println("Stop")
+	} else {
+		fmt.Println("Snooze")
+	}
+
 	done <- true
 	fmt.Println("Ticker stopped")
 }
