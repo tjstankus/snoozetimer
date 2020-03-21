@@ -28,9 +28,8 @@ func main() {
 
 	// Tickers can be stopped like timers. Once a ticker
 	// is stopped it won't receive any more values on its
-	// channel. We'll stop ours after 1600ms.
+	// channel.
 	time.Sleep(5 * time.Second)
-	ticker.Stop()
 
 	dialog := mack.DialogOptions{
 		Text:    "Time's up",    // Required
@@ -43,8 +42,8 @@ func main() {
 	}
 
 	if response.Clicked == "Stop" {
-		// handle the Cancel event
 		fmt.Println("Stop")
+		ticker.Stop()
 	} else {
 		fmt.Println("Snooze")
 	}
